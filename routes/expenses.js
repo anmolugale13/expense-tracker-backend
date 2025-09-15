@@ -15,8 +15,32 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const { category } = req.query;
-    const filter = category ? { category } : {};
+    const { category, time } = req.query;
+
+let filter = {};
+
+if (category) {
+  filter.category = category;
+}
+
+if (time) {
+  const now = new Date();
+  let startDate;
+
+  if (time === 'today') {
+    startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  } else if (time === 'week') {
+    const dayOfWeek = now.getDay(); // 0 (Sun) to 6 (Sat)
+    startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dayOfWeek);
+  } else if (time === 'month') {
+    startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  }
+
+  if (startDate) {
+    filter.date = { $gte: startDate };
+  }
+}
+
     const expenses = await Expense.find(filter).sort({ date: -1 });
     res.json(expenses);
   } catch (err) {
