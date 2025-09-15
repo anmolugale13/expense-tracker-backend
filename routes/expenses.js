@@ -37,8 +37,10 @@ if (time) {
   }
 
   if (startDate) {
-    filter.date = { $gte: startDate };
-  }
+  const endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  filter.date = { $gte: startDate, $lt: endDate };
+}
+
 }
 
     const expenses = await Expense.find(filter).sort({ date: -1 });
