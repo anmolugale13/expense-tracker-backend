@@ -38,7 +38,7 @@ backend/
 └── server.js
 
 
-## API Endpoints
+##🔚 API Endpoints
 
 All endpoints are prefixed with `/api/expenses`
 
