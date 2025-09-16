@@ -25,21 +25,23 @@ if (category) {
 
 if (time) {
   const now = new Date();
-  let startDate;
+  let startDate, endDate;
 
   if (time === 'today') {
     startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
   } else if (time === 'week') {
-    const dayOfWeek = now.getDay();
+    const dayOfWeek = now.getDay(); // 0 (Sun) to 6 (Sat)
     startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dayOfWeek);
     endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + (6 - dayOfWeek) + 1);
   } else if (time === 'month') {
-  startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-  const endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-  filter.date = { $gte: startDate, $lt: endDate };
-}
+    startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+    endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  }
 
-
+  if (startDate && endDate) {
+    filter.date = { $gte: startDate, $lt: endDate };
+  }
 }
 
     const expenses = await Expense.find(filter).sort({ date: -1 });
