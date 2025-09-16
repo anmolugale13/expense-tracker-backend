@@ -30,16 +30,15 @@ if (time) {
   if (time === 'today') {
     startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   } else if (time === 'week') {
-    const dayOfWeek = now.getDay(); // 0 (Sun) to 6 (Sat)
+    const dayOfWeek = now.getDay();
     startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dayOfWeek);
+    endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + (6 - dayOfWeek) + 1);
   } else if (time === 'month') {
-    startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-  }
-
-  if (startDate) {
-  const endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  const endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
   filter.date = { $gte: startDate, $lt: endDate };
 }
+
 
 }
 
