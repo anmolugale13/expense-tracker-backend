@@ -38,6 +38,19 @@ backend/
 └── server.js
 
 
+## API Endpoints
+
+All endpoints are prefixed with `/api/expenses`
+
+| Method | Endpoint              | Description        |
+|--------|-----------------------|--------------------|
+| GET    | `/api/expenses`       | Fetch all expenses |
+| POST   | `/api/expenses`       | Add a new expense  |
+| DELETE | `/api/expenses/:id`   | Delete an expense  |
+
+**Data model includes:** `title`, `amount`, `category`, `date`
+
+
 ## 🌐 Environment Variables
 
 Create a `.env` file in the root of the backend project:
