@@ -42,11 +42,12 @@ backend/
 
 All endpoints are prefixed with `/api/expenses`
 
-| Method | Endpoint              | Description        |
-|--------|-----------------------|--------------------|
-| GET    | `/api/expenses`       | Fetch all expenses |
-| POST   | `/api/expenses`       | Add a new expense  |
-| DELETE | `/api/expenses/:id`   | Delete an expense  |
+| Method | Endpoint               | Description                     |
+|--------|------------------------|---------------------------------|
+| GET    | `/api/expenses`        | Fetch all expenses              |
+| POST   | `/api/expenses`        | Add a new expense               |
+| DELETE | `/api/expenses/:id`    | Delete an expense               |
+| GET    | `/api/expenses/summary`| Return total spent by category  |
 
 **Data model includes:** `title`, `amount`, `category`, `date`
 
